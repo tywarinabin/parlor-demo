@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyank Salon & Spa | Premium Ladies Beauty Parlor | Bhopal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Priyank Salon</h1>
+                        <span>Ladies Beauty & Spa</span>
+                    </div>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link"><i class="fas fa-spa"></i> Services</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li class="nav-item"><a href="#reviews" class="nav-link"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li class="nav-item"><a href="#events" class="nav-link"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <a href="tel:09300471967" class="btn-call">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Call Now</span>
+                    </a>
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge">
+                        <i class="fas fa-gem"></i>
+                        <span>Women-Owned & Operated</span>
+                    </div>
+                    <h1 class="hero-title">Experience Luxury Beauty Care in Bhopal</h1>
+                    <p class="hero-description">Premium ladies-only salon offering professional beauty, spa, and wellness services in a luxurious, hygienic environment.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">4.9</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">105+</div>
+                            <div class="stat-label">Reviews</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#booking" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Book Appointment
+                        </a>
+                        <a href="#services" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i>
+                            View Services
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Luxury Salon">
+                        <div class="image-overlay">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.9/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Premium Services</h2>
+                <p class="section-subtitle">Experience excellence with our comprehensive beauty & wellness services</p>
+            </div>
+
+            <!-- Service Tabs -->
+            <div class="service-tabs">
+                <button class="service-tab active" data-category="all">
+                    <i class="fas fa-star"></i>
+                    All Services
+                </button>
+                <button class="service-tab" data-category="makeup">
+                    <i class="fas fa-paint-brush"></i>
+                    Makeup
+                </button>
+                <button class="service-tab" data-category="hair">
+                    <i class="fas fa-cut"></i>
+                    Hair
+                </button>
+                <button class="service-tab" data-category="skin">
+                    <i class="fas fa-spa"></i>
+                    Skin Care
+                </button>
+                <button class="service-tab" data-category="bridal">
+                    <i class="fas fa-gem"></i>
+                    Bridal
+                </button>
+            </div>
+
+            <!-- Services Slider -->
+            <div class="services-slider swiper">
+                <div class="swiper-wrapper">
+                    <!-- Service cards will be loaded by JavaScript -->
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2 class="section-title">Why Choose Priyank Salon?</h2>
+                        <p class="section-subtitle">Premium beauty experience since 2015</p>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Hygiene First</h3>
+                            <p>Sterilized equipment & strict sanitization protocols</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3>Certified Experts</h3>
+                            <p>Certified professionals with 5+ years experience</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <h3>Premium Products</h3>
+                            <p>International standard, dermatologically tested</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-female"></i>
+                            </div>
+                            <h3>Women-Only</h3>
+                            <p>Female staff & clients for comfort & privacy</p>
+                        </div>
+                    </div>
+
+                    <div class="about-details">
+                        <p><i class="fas fa-check"></i> Located in heart of Bhopal</p>
+                        <p><i class="fas fa-check"></i> Affordable premium services</p>
+                        <p><i class="fas fa-check"></i> Customized beauty solutions</p>
+                        <p><i class="fas fa-check"></i> Emergency services available</p>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <div class="image-gallery">
+                        <div class="gallery-main">
+                            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Salon Interior">
+                        </div>
+                        <div class="gallery-thumbnails">
+                            <div class="thumbnail active">
+                                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Salon">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Makeup">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Facial">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Testimonials</h2>
+                <p class="section-subtitle">What our clients say about us</p>
+            </div>
+
+            <div class="reviews-slider swiper">
+                <div class="swiper-wrapper">
+                    <!-- Reviews will be loaded by JavaScript -->
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="review-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>4.9/5</h3>
+                        <p>Average Rating</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>105+</h3>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>50+</h3>
+                        <p>Events Covered</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8+ Years</h3>
+                        <p>Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="events-content">
+                <div class="events-text">
+                    <div class="section-header">
+                        <h2 class="section-title">Event & Ceremony Services</h2>
+                        <p class="section-subtitle">Professional beauty services at your venue</p>
+                    </div>
+
+                    <div class="event-types">
+                        <div class="event-type">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>Birthday Parties</span>
+                        </div>
+                        <div class="event-type">
+                            <i class="fas fa-heart"></i>
+                            <span>Weddings</span>
+                        </div>
+                        <div class="event-type">
+                            <i class="fas fa-glass-cheers"></i>
+                            <span>Engagements</span>
+                        </div>
+                        <div class="event-type">
+                            <i class="fas fa-gift"></i>
+                            <span>Anniversaries</span>
+                        </div>
+                        <div class="event-type">
+                            <i class="fas fa-users"></i>
+                            <span>Corporate Events</span>
+                        </div>
+                        <div class="event-type">
+                            <i class="fas fa-holiday"></i>
+                            <span>Festivals</span>
+                        </div>
+                    </div>
+
+                    <div class="event-features">
+                        <h3><i class="fas fa-check-circle"></i> What We Offer:</h3>
+                        <ul>
+                            <li>At-home service for groups</li>
+                            <li>Customized packages</li>
+                            <li>Professional team of 3-5 experts</li>
+                            <li>All equipment provided</li>
+                            <li>Flexible timing</li>
+                            <li>Emergency services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="booking-form" id="booking">
+                    <div class="form-header">
+                        <h3><i class="fas fa-calendar-alt"></i> Book Your Service</h3>
+                        <p>Fill the form & we'll call you back</p>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="serviceType">
+                                <i class="fas fa-spa"></i> Service Type
+                            </label>
+                            <select id="serviceType" required>
+                                <option value="">Select Service</option>
+                                <option value="regular">Regular Salon Service</option>
+                                <option value="event">Event/Ceremony Service</option>
+                                <option value="bridal">Bridal Package</option>
+                                <option value="spa">Spa & Wellness</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">
+                                    <i class="fas fa-user"></i> Full Name
+                                </label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">
+                                    <i class="fas fa-phone"></i> Phone
+                                </label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">
+                                <i class="fas fa-calendar"></i> Preferred Date
+                            </label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">
+                                <i class="fas fa-clock"></i> Preferred Time
+                            </label>
+                            <select id="time" required>
+                                <option value="">Select Time</option>
+                                <option value="9-11">9:00 AM - 11:00 AM</option>
+                                <option value="11-1">11:00 AM - 1:00 PM</option>
+                                <option value="1-3">1:00 PM - 3:00 PM</option>
+                                <option value="3-5">3:00 PM - 5:00 PM</option>
+                                <option value="5-7">5:00 PM - 7:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fas fa-comment"></i> Special Requests
+                            </label>
+                            <textarea id="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Booking Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Visit Our Salon</h2>
+                <p class="section-subtitle">Get in touch with us</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Our Location</h3>
+                            <p>126, 1st Floor, Rachna Nagar, Govindpura, Bhopal, Madhya Pradesh 462023</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Contact Number</h3>
+                            <p>093004 71967</p>
+                            <a href="tel:09300471967" class="btn-call-small">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Working Hours</h3>
+                            <p>Monday - Sunday: 9:00 AM - 8:00 PM</p>
+                            <span class="note">* Advance booking recommended</span>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Quick Info</h3>
+                            <p>Women-owned | Ladies-only | Hygiene Certified | Free Consultation</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-google"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div class="map-info">
+                            <h3><i class="fas fa-map-pin"></i> Find Us</h3>
+                            <p>We're located in Govindpura, easily accessible from all parts of Bhopal</p>
+                            <a href="https://maps.google.com/?q=126+Rachna+Nagar+Govindpura+Bhopal" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-directions"></i>
+                                Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h2>Priyank Salon</h2>
+                            <span>Premium Ladies Beauty Parlor</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">Bhopal's premier ladies-only beauty destination offering luxury beauty, spa, and wellness services.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#reviews"><i class="fas fa-chevron-right"></i> Reviews</a></li>
+                        <li><a href="#events"><i class="fas fa-chevron-right"></i> Event Booking</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-services">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Bridal Makeup</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Hair Styling</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Skin Care</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Spa & Massage</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Nail Art</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Event Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Govindpura, Bhopal</p>
+                        <p><i class="fas fa-phone"></i> 093004 71967</p>
+                        <p><i class="fas fa-clock"></i> 9:00 AM - 8:00 PM</p>
+                        <p><i class="fas fa-female"></i> Ladies Only</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 Priyank Salon & Spa (Ladies Only). All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> for the women of Bhopal</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919300471967" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
