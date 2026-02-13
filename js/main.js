@@ -6,7 +6,7 @@ const servicesData = [
         id: 1,
         title: "Bridal Makeup & Styling",
         description: "Complete bridal transformation with premium products, trial sessions, and customized look design.",
-        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2070&q=80",
         category: ["makeup", "bridal"],
         features: ["Trial Session", "Premium Products", "Custom Design"],
         price: "₹8,999"
@@ -15,7 +15,7 @@ const servicesData = [
         id: 2,
         title: "Hair Styling & Treatment",
         description: "Professional haircuts, coloring, keratin treatment, smoothening, and complete hair spa.",
-        image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=2070&q=80",
         category: ["hair"],
         features: ["Keratin", "Color Expert", "Hair Spa"],
         price: "₹1,499"
@@ -24,7 +24,7 @@ const servicesData = [
         id: 3,
         title: "Premium Facial Treatments",
         description: "Advanced facials, cleanups, bleaching, threading, waxing with international standard products.",
-        image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=2070&q=80",
         category: ["skin"],
         features: ["Gold Facial", "Hydration", "Anti-Aging"],
         price: "₹999"
@@ -33,7 +33,7 @@ const servicesData = [
         id: 4,
         title: "Luxury Spa & Massage",
         description: "Relaxing body massage, aromatherapy, de-stress treatments, and full body spa for rejuvenation.",
-        image: "https://images.unsplash.com/photo-1596703923338-48f1c07e4f2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=2070&q=80",
         category: ["spa"],
         features: ["Aromatherapy", "De-stress", "Rejuvenation"],
         price: "₹1,799"
@@ -42,7 +42,7 @@ const servicesData = [
         id: 5,
         title: "Party & Event Makeup",
         description: "Professional makeup for birthdays, engagements, corporate events and special occasions.",
-        image: "https://images.unsplash.com/photo-1519415711931-702deacf5be8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=2070&q=80",
         category: ["makeup"],
         features: ["HD Makeup", "Airbrush", "Waterproof"],
         price: "₹2,499"
@@ -51,7 +51,7 @@ const servicesData = [
         id: 6,
         title: "Nail Art & Care",
         description: "Manicure, pedicure, nail extensions, gel polish, and creative nail art designs.",
-        image: "https://images.unsplash.com/photo-1607779097332-bb4c6d0c2c1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&w=2070&q=80",
         category: ["hair", "skin"],
         features: ["Gel Polish", "Nail Art", "Extensions"],
         price: "₹699"
@@ -60,7 +60,7 @@ const servicesData = [
         id: 7,
         title: "Mehndi & Henna Art",
         description: "Traditional and modern mehndi designs for weddings, festivals, and special occasions.",
-        image: "https://images.unsplash.com/photo-1519415711931-702deacf5be8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2070&q=80",
         category: ["bridal"],
         features: ["Traditional", "Arabic", "Custom"],
         price: "₹499"
@@ -69,7 +69,7 @@ const servicesData = [
         id: 8,
         title: "Bridal Package (Full Day)",
         description: "Complete bridal package including makeup, hair, mehndi, and pre-bridal treatments.",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=2070&q=80",
         category: ["bridal", "makeup", "hair"],
         features: ["Full Day", "3 Artists", "Touch-ups"],
         price: "₹15,999"
@@ -146,16 +146,26 @@ const backToTop = document.querySelector('.back-to-top');
 const header = document.querySelector('.header');
 const thumbnails = document.querySelectorAll('.thumbnail');
 const mainImage = document.querySelector('.gallery-main img');
+const themeButtons = document.querySelectorAll('.theme-btn');
 
 // Initialize Swiper instances
 let servicesSwiper, reviewsSwiper;
 
 // Functions
 function initMobileMenu() {
-    menuToggle.addEventListener('click', () => {
+    if (!menuToggle || !navMenu) {
+        return;
+    }
+
+    menuToggle.setAttribute('aria-expanded', 'false');
+
+    menuToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
         navMenu.classList.toggle('active');
-        menuToggle.innerHTML = navMenu.classList.contains('active') 
-            ? '<i class="fas fa-times"></i>' 
+        const isOpen = navMenu.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.innerHTML = isOpen
+            ? '<i class="fas fa-times"></i>'
             : '<i class="fas fa-bars"></i>';
     });
 
@@ -163,6 +173,7 @@ function initMobileMenu() {
     document.addEventListener('click', (e) => {
         if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
             navMenu.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         }
     });
@@ -171,6 +182,7 @@ function initMobileMenu() {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         });
     });
@@ -502,6 +514,26 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+function initThemeToggle() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedTheme = button.dataset.theme;
+            applyTheme(selectedTheme);
+            localStorage.setItem('theme', selectedTheme);
+        });
+    });
+}
+
+function applyTheme(theme) {
+    document.body.classList.toggle('theme-dark', theme === 'dark');
+    themeButtons.forEach(button => {
+        button.classList.toggle('active', button.dataset.theme === theme);
+    });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
@@ -511,6 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initForms();
     initScrollEffects();
     initImageGallery();
+    initThemeToggle();
     
     // Add active class to current nav link on page load
     updateActiveNavLink();

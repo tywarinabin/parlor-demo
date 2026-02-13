@@ -41,11 +41,25 @@
     .container {
         padding: 0 var(--spacing-sm);
     }
+
+    .header-actions {
+        gap: var(--spacing-xs);
+    }
+
+    .theme-toggle {
+        padding: 4px;
+    }
+
+    .theme-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
     
     /* Header */
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 80px;
         left: 0;
         right: 0;
         background: var(--bg-secondary);
@@ -53,18 +67,27 @@
         padding: var(--spacing-lg);
         border-top: 1px solid var(--border-color);
         box-shadow: var(--shadow-lg);
-        display: none;
-        z-index: 999;
+        display: flex;
+        gap: var(--spacing-md);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: var(--transition-normal);
+        z-index: 1001;
     }
     
     .nav-menu.active {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
     }
     
     .menu-toggle {
-        display: block;
+        display: inline-flex;
     }
-    
+
     .header-actions .btn-call span {
         display: none;
     }
@@ -219,37 +242,5 @@
     .nav-menu {
         max-height: 200px;
         overflow-y: auto;
-    }
-}
-
-/* Dark Mode Adjustments */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: #0a0a0f;
-        --bg-secondary: #121212;
-        --bg-card: #1e1e1e;
-        --bg-accent: #2a2a2a;
-    }
-}
-
-/* Print Styles */
-@media print {
-    .header,
-    .footer,
-    .whatsapp-float,
-    .back-to-top,
-    .hero-actions,
-    .booking-form {
-        display: none;
-    }
-    
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .container {
-        max-width: 100%;
-        padding: 0;
     }
 }
