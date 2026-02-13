@@ -6,7 +6,7 @@ const servicesData = [
         id: 1,
         title: "Bridal Makeup & Styling",
         description: "Complete bridal transformation with premium products, trial sessions, and customized look design.",
-        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2070&q=80",
         category: ["makeup", "bridal"],
         features: ["Trial Session", "Premium Products", "Custom Design"],
         price: "₹8,999"
@@ -15,7 +15,7 @@ const servicesData = [
         id: 2,
         title: "Hair Styling & Treatment",
         description: "Professional haircuts, coloring, keratin treatment, smoothening, and complete hair spa.",
-        image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2070&q=80",
         category: ["hair"],
         features: ["Keratin", "Color Expert", "Hair Spa"],
         price: "₹1,499"
@@ -24,7 +24,7 @@ const servicesData = [
         id: 3,
         title: "Premium Facial Treatments",
         description: "Advanced facials, cleanups, bleaching, threading, waxing with international standard products.",
-        image: "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=2070&q=80",
         category: ["skin"],
         features: ["Gold Facial", "Hydration", "Anti-Aging"],
         price: "₹999"
@@ -33,7 +33,7 @@ const servicesData = [
         id: 4,
         title: "Luxury Spa & Massage",
         description: "Relaxing body massage, aromatherapy, de-stress treatments, and full body spa for rejuvenation.",
-        image: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=2070&q=80",
         category: ["spa"],
         features: ["Aromatherapy", "De-stress", "Rejuvenation"],
         price: "₹1,799"
@@ -42,7 +42,7 @@ const servicesData = [
         id: 5,
         title: "Party & Event Makeup",
         description: "Professional makeup for birthdays, engagements, corporate events and special occasions.",
-        image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2070&q=80",
         category: ["makeup"],
         features: ["HD Makeup", "Airbrush", "Waterproof"],
         price: "₹2,499"
@@ -51,7 +51,7 @@ const servicesData = [
         id: 6,
         title: "Nail Art & Care",
         description: "Manicure, pedicure, nail extensions, gel polish, and creative nail art designs.",
-        image: "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=2070&q=80",
         category: ["hair", "skin"],
         features: ["Gel Polish", "Nail Art", "Extensions"],
         price: "₹699"
@@ -60,7 +60,7 @@ const servicesData = [
         id: 7,
         title: "Mehndi & Henna Art",
         description: "Traditional and modern mehndi designs for weddings, festivals, and special occasions.",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=2070&q=80",
         category: ["bridal"],
         features: ["Traditional", "Arabic", "Custom"],
         price: "₹499"
@@ -69,7 +69,7 @@ const servicesData = [
         id: 8,
         title: "Bridal Package (Full Day)",
         description: "Complete bridal package including makeup, hair, mehndi, and pre-bridal treatments.",
-        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=2070&q=80",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2070&q=80",
         category: ["bridal", "makeup", "hair"],
         features: ["Full Day", "3 Artists", "Touch-ups"],
         price: "₹15,999"
@@ -195,6 +195,12 @@ function initServicesSlider() {
     servicesSwiper = new Swiper('.services-slider', {
         slidesPerView: 1,
         spaceBetween: 20,
+        speed: 600,
+        loop: true,
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+        },
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -254,6 +260,8 @@ function initReviewsSlider() {
     reviewsSwiper = new Swiper('.reviews-slider', {
         slidesPerView: 1,
         spaceBetween: 30,
+        speed: 600,
+        loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -529,6 +537,7 @@ function initThemeToggle() {
 
 function applyTheme(theme) {
     document.body.classList.toggle('theme-dark', theme === 'dark');
+    document.documentElement.style.colorScheme = theme === 'dark' ? 'dark' : 'light';
     themeButtons.forEach(button => {
         button.classList.toggle('active', button.dataset.theme === theme);
     });
