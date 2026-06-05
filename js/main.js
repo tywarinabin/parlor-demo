@@ -157,6 +157,8 @@ function initMobileMenu() {
         return;
     }
 
+    const hamburger = menuToggle.querySelector('.hamburger');
+
     menuToggle.setAttribute('aria-expanded', 'false');
 
     menuToggle.addEventListener('click', (event) => {
@@ -164,9 +166,10 @@ function initMobileMenu() {
         navMenu.classList.toggle('active');
         const isOpen = navMenu.classList.contains('active');
         menuToggle.setAttribute('aria-expanded', String(isOpen));
-        menuToggle.innerHTML = isOpen
-            ? '<i class="fas fa-times"></i>'
-            : '<i class="fas fa-bars"></i>';
+
+        if (hamburger) {
+            hamburger.classList.toggle('active', isOpen);
+        }
     });
 
     // Close menu when clicking outside
@@ -174,7 +177,7 @@ function initMobileMenu() {
         if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
             navMenu.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            if (hamburger) hamburger.classList.remove('active');
         }
     });
 
@@ -183,20 +186,59 @@ function initMobileMenu() {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            if (hamburger) hamburger.classList.remove('active');
         });
     });
 }
 
 function initServicesSlider() {
     renderServices('all');
-    
+}
+
+function renderServices(category) {
+    if (servicesSwiper) {
+        servicesSwiper.destroy(true, true);
+        servicesSwiper = null;
+    }
+
+    servicesSliderWrapper.innerHTML = '';
+
+    const filteredServices = category === 'all'
+        ? servicesData
+        : servicesData.filter(service => service.category.includes(category));
+
+    filteredServices.forEach(service => {
+        const serviceCard = `
+            <div class="swiper-slide h-auto flex">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full w-full border border-pink-200/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="h-48 relative overflow-hidden group">
+                        <img src="${service.image}" alt="${service.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">${service.title}</h3>
+                        <p class="opacity-70 text-sm mb-4 flex-grow">${service.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${service.features.map(feature =>
+            `<span class="bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400 text-xs px-3 py-1 rounded-full border border-pink-200 dark:border-pink-800">${feature}</span>`
+        ).join('')}
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+                            <div class="text-pink-500 font-bold">Starting at ${service.price}</div>
+                            <a href="#booking" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white text-sm px-5 py-2 rounded-full font-medium shadow-md hover:shadow-pink-500/40 transition-all transform hover:-translate-y-0.5">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        servicesSliderWrapper.innerHTML += serviceCard;
+    });
+
     // Initialize Swiper
     servicesSwiper = new Swiper('.services-slider', {
         slidesPerView: 1,
         spaceBetween: 20,
         speed: 600,
-        loop: true,
+        loop: filteredServices.length > 3,
         autoplay: {
             delay: 4500,
             disableOnInteraction: false,
@@ -211,52 +253,14 @@ function initServicesSlider() {
         },
         breakpoints: {
             640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
+            1024: { slidesPerView: Math.min(3, filteredServices.length) }
         }
     });
 }
 
-function renderServices(category) {
-    servicesSliderWrapper.innerHTML = '';
-    
-    const filteredServices = category === 'all' 
-        ? servicesData 
-        : servicesData.filter(service => service.category.includes(category));
-    
-    filteredServices.forEach(service => {
-        const serviceCard = `
-            <div class="swiper-slide">
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="${service.image}" alt="${service.title}">
-                    </div>
-                    <div class="service-content">
-                        <h3>${service.title}</h3>
-                        <p>${service.description}</p>
-                        <div class="service-features">
-                            ${service.features.map(feature => 
-                                `<span class="feature-tag">${feature}</span>`
-                            ).join('')}
-                        </div>
-                        <div class="service-price">
-                            <div class="price">Starting at ${service.price}</div>
-                            <a href="#booking" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        servicesSliderWrapper.innerHTML += serviceCard;
-    });
-    
-    if (servicesSwiper) {
-        servicesSwiper.update();
-    }
-}
-
 function initReviewsSlider() {
     renderReviews();
-    
+
     reviewsSwiper = new Swiper('.reviews-slider', {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -282,30 +286,34 @@ function initReviewsSlider() {
 
 function renderReviews() {
     reviewsSliderWrapper.innerHTML = '';
-    
+
     reviewsData.forEach(review => {
-        const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+        const stars = '<i class="fas fa-star text-yellow-400"></i>'.repeat(Math.floor(review.rating)) +
+            (review.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt text-yellow-400"></i>' : '') +
+            '<i class="far fa-star text-yellow-400"></i>'.repeat(5 - Math.ceil(review.rating));
+
         const reviewCard = `
-            <div class="swiper-slide">
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">${review.initials}</div>
-                            <div class="reviewer-details">
-                                <h4>${review.name}</h4>
-                                <div class="review-date">${review.date}</div>
+            <div class="swiper-slide h-auto flex">
+                <div class="glass-card rounded-2xl p-6 flex flex-col h-full w-full border border-purple-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl text-purple-500">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-4 relative z-10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md border border-white/20">
+                                ${review.initials}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white">${review.name}</h4>
+                                <div class="text-xs opacity-60">${review.date}</div>
                             </div>
                         </div>
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star${review.rating === 5 ? '' : '-half-alt'}"></i>
+                        <div class="flex gap-1 text-sm">
+                            ${stars}
                         </div>
                     </div>
-                    <div class="review-content">
-                        <p>${review.content}</p>
+                    <div class="opacity-80 italic text-sm leading-relaxed flex-grow relative z-10">
+                        "${review.content}"
                     </div>
                 </div>
             </div>
@@ -333,43 +341,64 @@ function initForms() {
     // Set minimum date to today
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('date').min = today;
-    
+
     // Booking form submission
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(bookingForm);
             const data = Object.fromEntries(formData);
-            
-            // Show success message
-            showNotification('Booking request submitted successfully! We will call you shortly to confirm.', 'success');
-            
+
+            // Additional Phone Validation
+            const phone = data.phone;
+            if (!/^\d{10}$/.test(phone)) {
+                showNotification('Please enter a valid 10-digit phone number.', 'error');
+                return;
+            }
+
+            // Construct WhatsApp message
+            let message = `Hello, I would like to book an appointment.\n\n`;
+            message += `*Details:*\n`;
+            message += `- Name: ${data.name}\n`;
+            message += `- Phone: ${data.phone}\n`;
+            message += `- Service: ${data.service}\n`;
+            message += `- Date: ${data.date}\n`;
+            message += `- Time: ${data.time}`;
+
+            if (data.notes && data.notes.trim() !== '') {
+                message += `\n- Notes: ${data.notes}`;
+            }
+
+            // WhatsApp number
+            const whatsappNumber = "919876543210";
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
             // Reset form
             bookingForm.reset();
             document.getElementById('date').min = today;
-            
-            // Log data (in real app, send to server)
-            console.log('Booking Data:', data);
+
+            // Redirect to WhatsApp
+            window.location.href = whatsappUrl;
         });
     }
-    
+
     // Event form submission
     if (eventForm) {
         eventForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(eventForm);
             const data = Object.fromEntries(formData);
-            
+
             // Show success message
             showNotification('Event service request submitted! Our team will contact you within 24 hours.', 'success');
-            
+
             // Reset form
             eventForm.reset();
-            
+
             // Log data (in real app, send to server)
             console.log('Event Data:', data);
         });
@@ -386,11 +415,11 @@ function initScrollEffects() {
             header.classList.remove('scrolled');
             backToTop.classList.remove('visible');
         }
-        
+
         // Update active nav link based on scroll position
         updateActiveNavLink();
     });
-    
+
     // Back to top
     backToTop.addEventListener('click', (e) => {
         e.preventDefault();
@@ -404,12 +433,12 @@ function initScrollEffects() {
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const scrollPos = window.scrollY + 100;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -441,7 +470,7 @@ function showNotification(message, type = 'info') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     // Create notification
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -454,10 +483,10 @@ function showNotification(message, type = 'info') {
             <i class="fas fa-times"></i>
         </button>
     `;
-    
+
     // Add to body
     document.body.appendChild(notification);
-    
+
     // Add styles
     notification.style.cssText = `
         position: fixed;
@@ -475,7 +504,7 @@ function showNotification(message, type = 'info') {
         animation: slideIn 0.3s ease;
         max-width: 400px;
     `;
-    
+
     // Add animation
     const style = document.createElement('style');
     style.textContent = `
@@ -506,13 +535,13 @@ function showNotification(message, type = 'info') {
         }
     `;
     document.head.appendChild(style);
-    
+
     // Close button
     notification.querySelector('.notification-close').addEventListener('click', () => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
     });
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
@@ -553,17 +582,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollEffects();
     initImageGallery();
     initThemeToggle();
-    
+
     // Add active class to current nav link on page load
     updateActiveNavLink();
-    
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            
+
             if (href === '#') return;
-            
+
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
@@ -574,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    
+
     // Initialize date input with today's date
     const dateInput = document.getElementById('date');
     if (dateInput) {
